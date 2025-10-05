@@ -1,0 +1,10 @@
+{
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "experimentalTernaries": true,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "proseWrap": "always",
+  "printWidth": 100,
+  "bracketSameLine": true,
+  "quoteProps": "consistent"
+}

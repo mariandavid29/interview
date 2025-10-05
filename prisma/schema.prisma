@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TimeSlot {
+  SLOT_08_00 // 8:00 AM
+  SLOT_10_00 // 10:00 AM
+  SLOT_12_00 // 12:00 PM
+  SLOT_14_00 // 2:00 PM
+  SLOT_16_00 // 4:00 PM
+  SLOT_18_00 // 6:00 PM
+  SLOT_20_00 // 8:00 PM
+}
+
+model TimeSlotInventory {
+  id            String   @id @default(cuid())
+  date          DateTime @db.Date
+  timeSlot      TimeSlot
+  totalCapacity Int      @default(1)
+  totalReserved Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  reservations Reservation[]
+
+  @@unique([date, timeSlot])
+  @@index([date])
+}
+
+model Reservation {
+  id          String            @id @default(cuid())
+  name        String
+  phone       String
+  date        DateTime          @db.Date
+  timeSlot    TimeSlot
+  inventoryId String
+  status      ReservationStatus @default(PENDING)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  inventory TimeSlotInventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+
+  @@index([inventoryId])
+  @@index([date, status])
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
