@@ -7,7 +7,7 @@ import { Calendar, DateValue } from '@heroui/calendar';
 import { ReactNode, useMemo, useState } from 'react';
 import z from 'zod';
 import parsePhoneNumberFromString from 'libphonenumber-js';
-import { TimeSlot } from '@/generated/prisma/client';
+import { TimeSlot } from '@prisma/client';
 import { createReservation } from '../actions';
 
 const nameSchema = z

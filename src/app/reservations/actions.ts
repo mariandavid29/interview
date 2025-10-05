@@ -2,7 +2,7 @@
 'use server';
 
 import { prisma } from '@/shared/db/prisma';
-import { TimeSlot } from '@/generated/prisma/client';
+import { TimeSlot } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 

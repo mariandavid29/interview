@@ -5,7 +5,7 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from '@heroui/table';
 import { Chip } from '@heroui/chip';
 import { Select, SelectItem } from '@heroui/select';
-import { Prisma, ReservationStatus } from '@/generated/prisma/client';
+import { Prisma, ReservationStatus } from '@prisma/client';
 import { useState, useTransition } from 'react';
 import { updateReservationStatus } from '../actions';
 
