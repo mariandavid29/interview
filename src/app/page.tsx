@@ -22,7 +22,7 @@ export default function HomePage() {
             <Button
               as={Link}
               size='lg'
-              href='/reservation'
+              href='/reservations'
               variant='flat'
               color='primary'
               className='text-lg font-medium'>
