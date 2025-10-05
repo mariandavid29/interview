@@ -2,6 +2,7 @@
 import { Card, CardBody, CardHeader } from '@heroui/card';
 import { prisma } from '@/shared/db/prisma';
 import { ReservationsTable } from './components/ReservationsTable';
+import { connection } from 'next/server';
 
 const TIME_SLOT_DISPLAY: Record<string, string> = {
   SLOT_08_00: '8:00 AM',
@@ -37,6 +38,8 @@ async function getReservationStats() {
 }
 
 export default async function AdminReservationsPage() {
+  await connection();
+
   const [reservations, stats] = await Promise.all([getAllReservations(), getReservationStats()]);
 
   return (
